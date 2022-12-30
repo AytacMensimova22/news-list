@@ -95,4 +95,19 @@ class AdminController extends CI_Controller{
         }
         
     }
+
+    public function deleteNews($id){
+
+        $this->db->where('n_id', $id)->delete('news');
+        redirect(base_url("a_news_list"));
+    }
+
+    public function update_news($id){
+        $data["single_news"]=$this->db->where("n_id",$id)->get("news")->row();
+        $this->load->view('admin/news/edit',$data);
+    }
+
+    public function update_newsAct($id){
+       echo $id;
+    }
 }
